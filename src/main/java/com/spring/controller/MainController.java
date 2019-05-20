@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -22,16 +23,21 @@ public class MainController {
 
     @GetMapping("/")
     public String viewIndex(Model model) {
-        return null;
+        List<PersonEntity> personList = service.findAll();
+        model.addAttribute("listPersons", personList);
+        return "index";
     }
 
     @GetMapping("/new")
     public String viewNewPerson(@Valid Model model) {
-        return null;
+        PersonEntity personEntity = new PersonEntity();
+        model.addAttribute("newPerson", personEntity);
+        return "new_person";
     }
 
     @PostMapping("/save")
-    public String viewSavePerson(@ModelAttribute("person") PersonEntity person) {
-        return null;
+    public String viewUpdatePerson(@ModelAttribute("person") PersonEntity person) {
+        service.updatePerson(person);
+        return "update_person";
     }
 }
