@@ -38,6 +38,6 @@ public class MainController {
     @PostMapping("/save")
     public String viewUpdatePerson(@ModelAttribute("person") PersonEntity person) {
         service.updatePerson(person);
-        return "update_person";
+        return "redirect:/";
     }
 }
