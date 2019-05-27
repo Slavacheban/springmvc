@@ -33,5 +33,5 @@ public class User {
             name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-    Set<Role> roles;
+    private Set<Role> roles;
 }

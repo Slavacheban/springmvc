@@ -21,8 +21,8 @@ import java.util.Objects;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MainController {
-    private PersonService service;
-    private UserService userService;
+    private final PersonService service;
+    private final UserService userService;
 
     @GetMapping("/")
     public String viewIndex(Model model) {
@@ -36,14 +36,14 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         User u = userService.findByName(user.getLogin());
         if (Objects.nonNull(u)) {
-            bindingResult.rejectValue("userName", "error.user", "User is registered");
+            bindingResult.rejectValue("userName", "error.user", "USER is registered");
             modelAndView.setViewName("login");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
             userService.save(u);
-            modelAndView.addObject("successMessage", "User was registered")
+            modelAndView.addObject("successMessage", "USER was registered")
                     .addObject("user", new User())
                     .setViewName("registration");
         }

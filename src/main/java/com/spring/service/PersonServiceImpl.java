@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonServiceImpl implements PersonService {
-    private PersonRepository repository;
+    private final PersonRepository repository;
 
     @Override
     public void createPerson(PersonEntity person) {
@@ -30,11 +30,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonEntity findPersonById(Long id) {
-        if (repository.findById(id).isPresent()) {
-            return repository.findById(id).get();
-        } else {
-            throw new IllegalArgumentException();
-        }
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

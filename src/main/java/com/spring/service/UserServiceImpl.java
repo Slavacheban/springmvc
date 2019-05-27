@@ -1,6 +1,6 @@
 package com.spring.service;
 
-import com.spring.exceptions.UserDontExcistException;
+import com.spring.exceptions.UserNotFoundException;
 import com.spring.model.user.User;
 import com.spring.repository.UserRepository;
 import lombok.Getter;
@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements UserService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public User findByName(String userName) {
-        return userRepository.findByUserName(userName).orElseThrow(UserDontExcistException::new);
+        return userRepository.findByUserName(userName).orElseThrow(UserNotFoundException::new);
     }
 
     @Override
