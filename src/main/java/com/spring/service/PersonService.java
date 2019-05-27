@@ -7,7 +7,7 @@ import java.util.List;
 public interface PersonService {
     void createPerson(PersonEntity person);
 
-    void updatePerson(PersonEntity persin);
+    void updatePerson(PersonEntity person);
 
     void deletePerson(Long id);
 

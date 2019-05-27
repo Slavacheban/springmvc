@@ -19,8 +19,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void updatePerson(PersonEntity persin) {
-        repository.save(persin);
+    public void updatePerson(PersonEntity person) {
+        repository.save(person);
     }
 
     @Override

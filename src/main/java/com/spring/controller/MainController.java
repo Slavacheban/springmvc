@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public ModelAndView loginOrRegistrate(User user, BindingResult bindingResult){
+    public ModelAndView loginOrRegistrate(@NotNull User user, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
         User u = userService.findByName(user.getLogin());
         if (Objects.nonNull(u)) {
